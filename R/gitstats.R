@@ -32,8 +32,11 @@ gitstats <- function (id = "hadley", type = c("users", "orgs"), max=20) {
 	out2 <- reshape2::melt(out, id = 1)
 	
 	#create ggplot object
-	myplot <- ggplot(out2, aes(Repo, value)) + geom_bar(stat="identity") + coord_flip() + 
-			facet_wrap(~variable) + theme_bw(base_size = 18) + xlab("") + ylab("")
+	myplot <- ggplot(out2, aes(Repo, value)) + 
+    geom_bar(stat="identity") + coord_flip() + 
+		facet_wrap(~variable) + 
+    theme_bw(base_size = 18) + 
+    xlab("") + ylab("")
 	
 	#don't return anything
 	print(myplot)  
