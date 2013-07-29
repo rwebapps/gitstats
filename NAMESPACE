@@ -1,0 +1,5 @@
+export(gitstats)
+import(ggplot2)
+import(httr)
+import(reshape2)
+import(RJSONIO)
