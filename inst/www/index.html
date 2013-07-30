@@ -33,7 +33,7 @@ $(function(){
 			id : $("#githubid").val(),
 			type : $("#type").val(),
 			max : $("#max").val()			
-		}).done(function(){
+		}).always(function(){
       $("#plotbutton").removeAttr("disabled");
     });
 	});
