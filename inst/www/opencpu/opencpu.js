@@ -9,11 +9,22 @@
  */
 
 (function ( $ ) {
+
+  function r_fun_json(fun, args, handler){
+    var jqxhr = r_fun_call(fun, args, function(loc){
+      $.get(loc + "R/.val/json", function(data){
+        handler && handler(data);
+      }).fail(function(){
+        alert("Failed to get JSON response.");
+      });
+    });
+    return jqxhr
+  }
+  
   //internal functions
   function r_fun_call(fun, args, handler){
     if(!fun) throw "r_fun_call called without fun";
-    
-    var disabledefaulterror;
+
     var jqxhr = $.ajax({
       type: "POST",
       url: opencpu.r_path + "/" + fun,
@@ -182,10 +193,10 @@
   
   //global settings
   opencpu.r_path = "../R";
-  opencpu.error_alert = true;  
 
-  // exported functions
+// exported functions
   opencpu.r_fun_call = r_fun_call;
+  opencpu.r_fun_json = r_fun_json;
   
   //for innernetz exploder
   if (typeof console == "undefined") {
@@ -193,5 +204,3 @@
   }  
       
 }( jQuery ));
-
-
