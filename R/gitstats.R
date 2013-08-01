@@ -9,7 +9,7 @@
 #' @import ggplot2 httr RJSONIO reshape2
 #' @export
 gitstats <- function (id = "hadley", type = c("users", "orgs"), max=20) {
-	type <- match.arg(type)
+	type <- match.arg(type, choices=c('users','orgs'))
 	
 	#call github API using httr
 	url2 <- paste("https://api.github.com", type, id, "repos?per_page=200", sep="/")
@@ -28,7 +28,7 @@ gitstats <- function (id = "hadley", type = c("users", "orgs"), max=20) {
 	out$name <- factor(out$name, levels=rev(out$name));
 	
 	#reshape to "long" dataframe"
-	names(out) <- c("Repo", "Forks", "Watchers")
+	names(out) <- c("Repo", "Forks", "Stars")
 	out2 <- reshape2::melt(out, id = 1)
 	
 	#create ggplot object
