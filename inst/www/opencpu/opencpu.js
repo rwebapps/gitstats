@@ -2,7 +2,7 @@
  * Javascript client library for OpenCPU
  * Version 0.1
  * Depends: jQuery
- * http://github.com/jeroenooms/opencpu-js
+ * http://github.com/jeroenooms/opencpu.js
  * 
  * Include this file in your apps (packages).
  * Edit r_path variable below if needed.

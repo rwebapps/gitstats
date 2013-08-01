@@ -22,23 +22,23 @@
 <script> 
 $(function(){
 
-	//optional, requires jquery-ui.
-	$("#plotdiv").resizable()
-	
-	//button handler
-	$("#plotbutton").on("click", function(e){
-  	e.preventDefault();
+  //optional, requires jquery-ui.
+  $("#plotdiv").resizable()
+  
+  //button handler
+  $("#plotbutton").on("click", function(e){
+    e.preventDefault();
     $("#plotbutton").attr("disabled", "disabled")
-		var req = $("#plotdiv").r_fun_plot("gitstats", {
-			id : $("#githubid").val(),
-			type : $("#type").val(),
-			max : parseInt($("#max").val())			
-		}).always(function(){
+    var req = $("#plotdiv").r_fun_plot("gitstats", {
+      id : $("#githubid").val(),
+      type : $("#type").val(),
+      max : parseInt($("#max").val())      
+    }).always(function(){
       $("#plotbutton").removeAttr("disabled");
     }).fail(function(){
       alert("HTTP error " + req.status + ": " + req.responseText);
     });
-	});
+  });
   
   //plot the default values on page load
   $("#plotbutton").trigger("click")
@@ -47,10 +47,10 @@ $(function(){
 <style>
 
 #plotdiv {
-	width: 100%;
-	height: 400px;
-	border: 1px solid #e3e3e3;
-	border-radius: 4px;
+  width: 100%;
+  height: 400px;
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
 }
 
 #type {
@@ -58,53 +58,53 @@ $(function(){
 }
 
 #plotbutton{
-	width: 120px;
-	margin-left: 20px;
+  width: 120px;
+  margin-left: 20px;
 }
 
 </style>
 </head>
 
 <body>
-	<div class="container">
+  <div class="container">
 
-		<div class="page-header">
-			<h1>Github Stats Plot</h1>
-		</div>
-		
-		<div class="row">
-			<div class="span3">
+    <div class="page-header">
+      <h1>Github Stats Plot</h1>
+    </div>
+    
+    <div class="row">
+      <div class="span3">
 
-				<form class="well" id="paramform">
-					<fieldset>
-						<legend>Plot Parameters</legend>
-						<label>User / Organization Name</label> 
+        <form class="well" id="paramform">
+          <fieldset>
+            <legend>Plot Parameters</legend>
+            <label>User / Organization Name</label> 
             <input class="input-medium" id="githubid" type="text" value="hadley"></input>
 
-						<label>Type</label> 
-						<select class="input-medium" id="type">
-							<option value="users">Github User</option>
-							<option value="orgs">Github Organization</option>
-						</select> 
+            <label>Type</label> 
+            <select class="input-medium" id="type">
+              <option value="users">Github User</option>
+              <option value="orgs">Github Organization</option>
+            </select> 
             
-						<label>Max Repos</label> 
-						<input class="input-medium" type="number" id="max" min="5" max="50" value="20" />
+            <label>Max Repos</label> 
+            <input class="input-medium" type="number" id="max" min="5" max="50" value="20" />
             
             <br />
             
-						<button class="btn btn-small btn-primary" id="plotbutton"><i class="icon-ok icon-white"></i> Update Plot</button>
-					</fieldset>
-				</form>
-			</div>
-			
-			<div class="span9">
-				<div id="plotdiv"></div>
-			</div>
+            <button class="btn btn-small btn-primary" id="plotbutton"><i class="icon-ok icon-white"></i> Update Plot</button>
+          </fieldset>
+        </form>
+      </div>
+      
+      <div class="span9">
+        <div id="plotdiv"></div>
+      </div>
     </div>
       
-  	<div class="row">
-  		<div class="span12">
-				<h3>About</h3>
+    <div class="row">
+      <div class="span12">
+        <h3>About</h3>
         <p>This is a simple OpenCPU application. Below some example API's to access the R source code and manual pages.</p>
         
         <table class="table table-striped">
@@ -117,8 +117,8 @@ $(function(){
           <tr><td>Help Page (pdf)</td><td><a href="../man/gitstats/pdf" target="blank">link</a></td><td><code>GET /library/package/man/function/pdf</code></td></tr>          
         </table>
                
-			</div>
+      </div>
     </div>
-	</div>
+  </div>
 </body>
 </html>
