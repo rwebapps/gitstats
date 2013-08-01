@@ -29,12 +29,14 @@ $(function(){
 	$("#plotbutton").on("click", function(e){
   	e.preventDefault();
     $("#plotbutton").attr("disabled", "disabled")
-		$("#plotdiv").r_fun_plot("gitstats", {
+		var req = $("#plotdiv").r_fun_plot("gitstats", {
 			id : $("#githubid").val(),
 			type : $("#type").val(),
-			max : $("#max").val()			
+			max : parseInt($("#max").val())			
 		}).always(function(){
       $("#plotbutton").removeAttr("disabled");
+    }).fail(function(){
+      alert("HTTP error " + req.status + ": " + req.responseText);
     });
 	});
   
