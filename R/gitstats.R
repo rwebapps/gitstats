@@ -13,9 +13,9 @@ gitstats <- function (id = "hadley", type = c("users", "orgs"), max=20) {
 	
 	#call github API using httr
 	url2 <- paste("https://api.github.com", type, id, "repos?per_page=200", sep="/")
-	xx <- GET(url2)
+	xx <- GET(url2, config(httpheader = c("User-Agent" = "RCurl")));
 	if(xx$status != 200){
-		stop("Github returned an error: ", xx$status)
+		stop("Github returned an error: ", xx$status, "\n\n", rawToChar(xx$content));
 	}
 	tt <- fromJSON(rawToChar(xx$content))
 	
