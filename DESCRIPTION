@@ -1,7 +1,7 @@
 Package: gitstats
 Type: OpenCPU Application
 Title: Gitstats application for OpenCPU
-Version: 0.1
+Version: 0.2
 Date: 2013-07-07
 Author: Scott Chamberlain, Jeroen Ooms
 Maintainer: Jeroen Ooms <jeroenooms@gmail.com>
@@ -12,5 +12,3 @@ Imports:
     httr,
     RJSONIO,
     reshape2
-Collate:
-    'gitstats.R'
