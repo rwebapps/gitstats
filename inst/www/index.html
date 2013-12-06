@@ -7,8 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <!-- ocpu library -->
-<script src="jquery/jquery-1.9.1.js"> </script>
-<script src="opencpu/opencpu.js"> </script>
+<script src="opencpu/jquery-1.10.2.min.js"> </script>
+<script src="opencpu/opencpu-0.4.js"> </script>
 
 <!-- some optional styling stuff -->
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -29,7 +29,7 @@ $(function(){
   $("#plotbutton").on("click", function(e){
     e.preventDefault();
     $("#plotbutton").attr("disabled", "disabled")
-    var req = $("#plotdiv").r_fun_plot("gitstats", {
+    var req = $("#plotdiv").rplot("gitstats", {
       id : $("#githubid").val(),
       type : $("#type").val(),
       max : parseInt($("#max").val())      
