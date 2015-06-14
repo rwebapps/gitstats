@@ -1,5 +1,5 @@
 export(gitstats)
-import(RJSONIO)
+import(jsonlite)
 import(ggplot2)
 import(httr)
 import(reshape2)

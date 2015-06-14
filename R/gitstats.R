@@ -6,7 +6,7 @@
 #' @param type either "users" or "orgs"
 #' @param max maximum number of repositories to plot
 #' @author Scott Chamberlain, Jeroen Ooms
-#' @import ggplot2 httr RJSONIO reshape2
+#' @import ggplot2 httr jsonlite reshape2
 #' @export
 gitstats <- function (id = "hadley", type = c("users", "orgs"), max=20) {
 	type <- match.arg(type, choices=c('users','orgs'))
@@ -17,14 +17,10 @@ gitstats <- function (id = "hadley", type = c("users", "orgs"), max=20) {
 	if(xx$status != 200){
 		stop("Github returned an error: ", xx$status, "\n\n", rawToChar(xx$content));
 	}
-	tt <- fromJSON(rawToChar(xx$content))
-	
-	#convert to data frame
-	out <- do.call("rbind", lapply(tt, "[", c("name", "forks", "watchers")))
-	out <- as.data.frame(lapply(as.data.frame(out), unlist))
+	out <- fromJSON(rawToChar(xx$content))
 	
 	#resort factor)
-	out <- out[head(order(out$watchers, decreasing=TRUE), max),];
+	out <- out[head(order(out$watchers, decreasing=TRUE), max),c("name", "forks", "watchers")];
 	out$name <- factor(out$name, levels=rev(out$name));
 	
 	#reshape to "long" dataframe"
