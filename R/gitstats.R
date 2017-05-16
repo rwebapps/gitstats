@@ -35,9 +35,9 @@ gitstats <- function (id = "hadley", type = c("users", "orgs"), max = 20, ...) {
 	out2 <- reshape2::melt(out, id = 1)
 	
 	#create ggplot object
-	Repo <- value <- NULL
-	ggplot(out2, aes(Repo, value)) + 
-    geom_bar(stat="identity") + coord_flip() + 
-		facet_wrap(~variable, scales = "free_x") + 
-    xlab("") + ylab("")
+	time <- format(Sys.time(), tz = 'UTC', usetz = TRUE)
+	ggplot(out2, aes(Repo, value)) + geom_bar(stat="identity") + coord_flip() + 
+		facet_wrap(~variable, scales = "free_x") + xlab("") + ylab("") + 
+    ggtitle(sprintf("Github stats from: '%s' (%s)", id, time))
+	  
 }
