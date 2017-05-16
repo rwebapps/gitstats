@@ -16,36 +16,28 @@
 #' gitstats(id = "jeroen", max = 30)
 #' gitstats(id = "ropensci", type = "orgs", max = 70)
 #' }
-gitstats <- function (id = "hadley", type = c("users", "orgs"), max = 100, 
-                      ...) {
+gitstats <- function (id = "hadley", type = c("users", "orgs"), max = 20, ...) {
   
 	type <- match.arg(type, choices=c('users','orgs'))
 	
 	#call github API using httr
 	url <- file.path("https://api.github.com", type, id, "repos")
-	xx <- GET(url, query = list(per_page = max), ...)
-	if (xx$status != 200) {
-		stop("Github returned an error: ", xx$status, "\n\n", rawToChar(xx$content))
-	}
-	out <- fromJSON(rawToChar(xx$content))
+	url <- paste0(url, "?type=owner&sort=pushed&per_page=100")
+	out <- jsonlite::fromJSON(url, flatten = TRUE)
 	
 	#resort factor)
-	out <- out[order(out$watchers, decreasing = TRUE), 
-	           c("name", "forks", "watchers")]
+	out <- out[order(out$watchers, decreasing = TRUE)[seq_len(max)], 
+	           c("name", "watchers", "forks", "open_issues")]
 	out$name <- factor(out$name, levels = rev(out$name))
 	
 	#reshape to "long" dataframe"
-	names(out) <- c("Repo", "Forks", "Stars")
+	names(out) <- c("Repo", "Stars", "Forks", "Issues")
 	out2 <- reshape2::melt(out, id = 1)
 	
 	#create ggplot object
 	Repo <- value <- NULL
-	myplot <- ggplot(out2, aes(Repo, value)) + 
+	ggplot(out2, aes(Repo, value)) + 
     geom_bar(stat="identity") + coord_flip() + 
-		facet_wrap(~variable) + 
+		facet_wrap(~variable, scales = "free_x") + 
     xlab("") + ylab("")
-	
-	#don't return anything
-	print(myplot)  
-	invisible();
 }
