@@ -1,8 +1,8 @@
 Package: gitstats
 Type: Package
 Title: Gitstats application for OpenCPU
-Version: 0.2.8
-Date: 2017-05-13
+Version: 0.2.9
+Date: 2017-05-16
 Author: Scott Chamberlain, Jeroen Ooms
 Maintainer: Jeroen Ooms <jeroen@berkeley.edu>
 Description: OpenCPU application to chart github statistics.
@@ -10,5 +10,6 @@ License: GPL
 Imports:
     ggplot2,
     httr,
-    RJSONIO,
+    jsonlite,
     reshape2
+RoxygenNote: 6.0.1
