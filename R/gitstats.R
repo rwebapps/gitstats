@@ -5,10 +5,9 @@
 #' 
 #' @param id name of the github user or organization. Default: "Hadley"
 #' @param type either "users" (default) or "orgs"
-#' @param max maximum number of repositories to plot. Default: 100. Max: 100
-#' @param ... curl options passed on to \code{\link[httr]{GET}}
+#' @param max maximum number of repositories to plot. Default: 20, max: 100
 #' @author Scott Chamberlain, Jeroen Ooms
-#' @import ggplot2 httr jsonlite reshape2
+#' @import ggplot2 curl jsonlite reshape2
 #' @export
 #' @examples \dontrun{
 #' gitstats(max = 10)
@@ -16,11 +15,12 @@
 #' gitstats(id = "jeroen", max = 30)
 #' gitstats(id = "ropensci", type = "orgs", max = 70)
 #' }
-gitstats <- function (id = "hadley", type = c("users", "orgs"), max = 20, ...) {
+gitstats <- function (id = "hadley", type = c("users", "orgs"), max = 20) {
   
 	type <- match.arg(type, choices=c('users','orgs'))
+	max <- min(max, 100)
 	
-	#call github API using httr
+	#call github API using jsonlite
 	url <- file.path("https://api.github.com", type, id, "repos")
 	url <- paste0(url, "?type=owner&sort=pushed&per_page=100")
 	out <- jsonlite::fromJSON(url, flatten = TRUE)

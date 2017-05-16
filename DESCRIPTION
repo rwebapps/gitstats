@@ -9,7 +9,7 @@ Description: OpenCPU application to chart github statistics.
 License: GPL
 Imports:
     ggplot2,
-    httr,
+    curl,
     jsonlite,
     reshape2
 RoxygenNote: 6.0.1

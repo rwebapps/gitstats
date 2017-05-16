@@ -4,16 +4,14 @@
 \alias{gitstats}
 \title{Plot github stats}
 \usage{
-gitstats(id = "hadley", type = c("users", "orgs"), max = 100, ...)
+gitstats(id = "hadley", type = c("users", "orgs"), max = 20)
 }
 \arguments{
 \item{id}{name of the github user or organization. Default: "Hadley"}
 
 \item{type}{either "users" (default) or "orgs"}
 
-\item{max}{maximum number of repositories to plot. Default: 100. Max: 100}
-
-\item{...}{curl options passed on to \code{\link[httr]{GET}}}
+\item{max}{maximum number of repositories to plot. Default: 20, max: 100}
 }
 \description{
 Plots the total number of forks and stars for all repositories of 
