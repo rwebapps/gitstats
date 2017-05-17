@@ -22,8 +22,8 @@ gitstats <- function (id = "hadley", type = c("users", "orgs"), max = 20) {
 	
 	#call github API using jsonlite
 	url <- file.path("https://api.github.com", type, id, "repos")
-	url <- paste0(url, "?type=owner&sort=pushed&per_page=100")
-	out <- jsonlite::fromJSON(url, flatten = TRUE)
+	res <- gh::gh(url, type = "owner", .limit = Inf)
+	out <- jsonlite:::simplify(res, flatten = TRUE)
 	
 	#resort factor)
 	out <- out[order(out$watchers, decreasing = TRUE)[seq_len(max)], 
