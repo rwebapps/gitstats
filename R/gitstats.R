@@ -20,7 +20,7 @@ gitstats <- function (id = "hadley", type = c("users", "orgs"), max = 20) {
 	type <- match.arg(type, choices=c('users','orgs'))
 	max <- min(max, 100)
 	
-	#call github API using jsonlite
+	#the 'gh' package automatically paginates
 	url <- file.path("https://api.github.com", type, id, "repos")
 	res <- gh::gh(url, type = "owner", .limit = Inf)
 	out <- jsonlite:::simplify(res, flatten = TRUE)

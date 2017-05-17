@@ -8,6 +8,7 @@ Maintainer: Jeroen Ooms <jeroen@berkeley.edu>
 Description: OpenCPU application to chart github statistics.
 License: GPL
 Imports:
+    gh,
     ggplot2,
     curl,
     jsonlite,
