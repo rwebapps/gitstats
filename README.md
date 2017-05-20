@@ -3,11 +3,8 @@ OpenCPU App: Gitstats
 
 Simple OpenCPU Application. To install in R:
 
-    library(devtools)
-    install_github("gitstats", "opencpu")
-
     library(opencpu)
-    opencpu$browse("library/gitstats/www")
+    ocpu_start_app("rwebapps/gitstats")
 
 Use the same function locally:
 
@@ -15,4 +12,4 @@ Use the same function locally:
     gitstats()
     ?gitstats
 
-For more information about OpenCPU apps, see [opencpu.js](https://github.com/jeroenooms/opencpu.js#readme)
+For more information about OpenCPU apps, see [opencpu.js](https://www.opencpu.org/apps.html)
